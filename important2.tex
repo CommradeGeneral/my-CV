@@ -1,0 +1,133 @@
+\usepackage{tasks}
+%\usepackage[margin=45pt,a4paper,]{geometry}
+%\usepackage[hang]{footmisc}
+\usepackage[breakable,external,fitting,hooks,magazine,poster,raster,skins,theorems,vignette,xparse,listings,]{tcolorbox}
+\usepackage{multicol}
+\usepackage{varwidth}
+%\usepackage{fancyhdr}
+\usepackage{steinmetz}
+\usepackage{tocbibind}
+\usepackage{cellspace}
+\usepackage{hhline}
+\usepackage{tabularx}
+\usepackage{mdframed}
+\usepackage{fontawesome5}
+%\usepackage{fdsymbol}
+\usepackage{totcount}
+\usepackage{paracol}
+
+
+
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{empheq}
+\usepackage{needspace}
+\usepackage[alwaysadjust]{paralist}
+\usepackage{picinpar}
+\usepackage{vwcol}  
+\usepackage{cancel}
+%\usepackage{picinpar}
+%\usepackage{floatflt}
+\usepackage{blindtext}
+\usepackage{enumitem} 
+\usepackage[explicit,calcwidth,compact]{titlesec} %for customization of sections
+\usepackage{tikz}
+\usepackage{lipsum}
+    \usetikzlibrary{calc,shapes,arrows,positioning,patterns,fit,shapes.arrows, fadings,arrows.meta}
+    \usetikzlibrary{decorations.text}
+		\usetikzlibrary{decorations.pathmorphing,calc,shadows.blur,shadings, , backgrounds,trees}
+		\usetikzlibrary{matrix}
+\usepackage{circuitikz}
+\usepackage{tikzpeople}
+		\pgfdeclarelayer{background layer}
+		\pgfdeclarelayer{foreground layer}
+		\pgfsetlayers{background,background layer,main,foreground layer}
+\usepackage{polyglossia}
+\usepackage{wrapfig}
+\usepackage{censor}
+%\newfontfamily\arabicfont[Script=Arabic,Scale=1.2]{Adobe Arabic}
+%\newfontfamily\adobear[Script=Arabic,Scale=0.9]{Adobe Arabic}
+%\newfontfamily\timesnewroman[Script=Arabic,Scale=1,Path = fonts/]{times.ttf}
+%\newfontfamily\segoeui[Script=Arabic,Scale=1,Path = fonts/]{seg.ttf} %messenger font
+%\newfontfamily\freestyle[Scale=2,Path = fonts/]{freescript.ttf}
+%\newfontfamily\agentsmith[Scale=1,Path = fonts/]{agency.ttf}
+%\newfontfamily\hafs[Script=Arabic,Scale=1,Path = fonts/]{hafs.otf}
+%\newfontfamily\shit[Script=Arabic,Scale=1]{JF Flat}
+%\newfontfamily\fshit[Script=Arabic,Scale=0.8]{JF Flat}
+%\newfontfamily\nastt[Script=Arabic,Scale=0.8]{Noto Nastaliq Urdu}
+%\newfontfamily\arabicfonttt[Path = fonts/]{incol.ttf}
+%\newfontfamily\englishfonttt[Path = fonts/]{incol.ttf}
+
+%Noto Nastaliq Urdu
+%\newfontfamily\hafsFiveNineSeven[,Scale=0.8]{QCF2597}
+%\newfontfamily\hafsFiveNineEight[,Scale=0.8]{QCF2598}
+
+%\newfontfamily\haffs[Script=Arabic,Scale=0.8]{KFGQPC Uthmanic Script HAFS}
+\colorlet{maintheme}{red!30!black}
+
+%\newfontfamily\englishfonttt[Scale=1,Path = fonts/]{times.ttf}
+%\setmainlanguage[numerals=maghrib]{arabic} %My main & native language
+%\setotherlanguage{english}
+%-----------------------------
+
+
+
+\usepackage{xecolor}
+\usepackage{etoolbox,refcount}
+
+\usepackage{censor}
+\usepackage{supertabular}
+
+\makeatletter
+
+
+\def\rating#1{\raisebox{-0.3ex}{\begin{tikzpicture}
+\foreach \u in {1,2,...,5}{
+\begin{scope}
+\draw (-0.5*\u,0) coordinate (KKK) circle (1ex);
+\end{scope}}
+\pgfmathsetmacro{\scaling}{#1}
+\pgfmathsetmacro{\scalinginteger}{int(floor(\scaling))}
+\pgfmathsetmacro{\scalingres}{\scaling-\scalinginteger}
+\pgfmathsetmacro{\scalingresceil}{int(ceil(\scalingres))}
+%--------------------
+\ifnum\scalinginteger=0
+\else 
+\foreach \u in {1,...,\scalinginteger}{
+\fill (-0.5*\u,0) circle (1ex);
+}
+\fi
+\ifnum\scalingresceil=0 \else
+\begin{scope}
+\fill ({-0.5*\scalinginteger-0.5},0) --++ (1ex,0) arc (0:360*\scalingres:1ex) -- cycle;
+\end{scope}
+\fi
+%----------------------
+\end{tikzpicture}}}
+
+\newfontfamily\ahandfont[Scale=1]{Shadows Into Light Two}
+\newfontfamily\akronim[Scale=1]{Akronim}
+\newfontfamily\grace[Scale=1]{Covered By Your Grace}
+\newfontfamily\Megrim[Scale=1]{Megrim}
+\newfontfamily\economicafont[Scale=1.3]{Economica}
+\newfontfamily\fredthegreat[Scale=1]{Fredericka the Great}
+\newfontfamily\arabicfont[Script=Arabic]{Times New Roman}
+\newfontfamily\mcskh[Script=Arabic]{Runya Multicolored}
+\newfontfamily\farsiB[Script=Arabic]{Farsi Simple Bold}
+\newfontfamily\mada[Script=Arabic,Scale=1]{Mada}
+\newfontfamily\jfflat[Script=Arabic,Scale=1]{JF Flat}
+\newfontfamily\mydig[Script=Arabic,Scale=1]{ae_Electron}
+
+%\newfontfamily\arabicfonttt[Script=Arabic]{Times New Roman}
+\let\arabicfonttt\texttt
+\setmainlanguage[numerals=maghrib]{arabic} %My main & native language
+\setotherlanguage{english}
+
+
+\makeatother
+

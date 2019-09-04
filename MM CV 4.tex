@@ -1,0 +1,98 @@
+\documentclass[12pt]{extarticle}
+\setlength{\columnsep}{2.5em}
+\usepackage[margin=15pt,a4paper,]{geometry}
+
+\input{important2}
+\input{configIII}
+\usepackage{pgfornament}
+\usepackage{eso-pic,graphicx}
+%\usepackage[color=black,opacity=1,angle=0,scale=1]{background}
+
+\usepackage{everypage}
+\usepackage{afterpage}
+\tcbset{bidibreakable/.style={breakable,enlarge top initially by=-1\baselineskip}}
+
+\globalcounter*
+\newcommand{\VarBox}[3][]{\begin{varwidth}[#1]{#2} #3 \end{varwidth}}
+
+\AddEverypageHook{%
+	%\ifnum \value{page}<\totvalue{lastnum}
+   %\begin{tikzpicture}[remember picture,overlay]
+	%\draw [top color=red!30,bottom color=red!30,middle color=blue!30] (current page.north east) rectangle 	%([xshift={-15pt-0.35\textwidth}]current page.south east) coordinate (border);
+	%\end{tikzpicture}
+	\ifnum\value{page}=\numexpr\totvalue{page}-1\relax
+	\begin{tikzpicture}[remember picture,overlay]
+	\clip
+	let \p1=(current page.south west),\p2=(last) in
+	(current page.north east) rectangle (\x1,\y2) coordinate (border);
+		\fill [top color=red!30,bottom color=red!30,middle color=blue!30] (current page.north east) rectangle 	([xshift={-15pt-0.35\textwidth}]current page.south east) coordinate (baby);
+		\draw [opacity=0.08] (current page.north west) grid (baby);
+	\end{tikzpicture}
+	\else\ifnum \value{page}<\numexpr\totvalue{page}-1\relax
+	   \begin{tikzpicture}[remember picture,overlay]
+	\fill [top color=red!30,bottom color=red!30,middle color=blue!30] (current page.north east) rectangle 	([xshift={-15pt-0.35\textwidth}]current page.south east) coordinate (border);
+	\draw [opacity=0.08] (current page.north west) grid (border);
+	\end{tikzpicture}
+	\fi\fi
+   }
+
+
+\let\oldsection\section
+\renewcommand{\section}[2][]{\renewcommand\logo{\node [overlay,scale=0.75] at (sym) {#1};}\oldsection{#2}%
+}
+\newcommand\defaultsub{%
+\ifmyorder
+	\setcounter{myyorderu}{\value{subsection}}%
+	\tikz[remember picture,inner sep=0pt] {\node [circle,fill,minimum width=0.7ex] (bullet\themyyorderu){};}\else
+	\tikz[baseline=(AAA.south)]{\node [circle,fill,inner sep=0pt,minimum width=0.7ex] (AAA) {};}\fi}
+
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[2][\defaultsub]{\renewcommand\sublogo{#1}%
+\oldsubsection{#2}%
+}
+
+\def\alongline{{\textenglish{\unskip\nobreak\leaders\hbox{--}\hskip 4em plus 1fill}} }
+
+\begin{document}
+\setlength{\parskip}{0cm}
+\newcounter{myyorder}%
+\regtotcounter{myyorder}%
+\StopCensoring%
+\newcounter{lastnum}%
+\regtotcounter{lastnum}%
+\regtotcounter{page}%
+\sloppy%
+\columnratio{0.65}%
+\begin{paracol}{2}
+\setlength\parindent{0pt}%
+\setlength\parskip{0pt}%
+\switchcolumn%
+\input{MMCV4-side}
+
+\switchcolumn
+
+\input{MMCV4-side2}
+\switchcolumn*
+\tikz[remember picture]{\coordinate (last) at (0,0);}%
+\setcounter{lastnum}{\value{page}}%
+\end{paracol}
+\vfill
+\begin{tcolorbox}[
+enhanced,interior hidden,frame code={
+	\path (frame.north west) to [ornament=88] (frame.north east);
+},left skip=4cm,right skip=4cm,left=0pt,right=0pt,
+]
+\small
+هذا المسند قد كتب بلغة الـ
+\LaTeX.
+يمكنك الحصول على كود المصدر لقالب السيرة الذاتبة باللغتين (العربية والإنكليزية) مجانًا
+واستعمالها كما تشاء عن طريق الموقع الآتي:
+
+\textenglish{{\fontfamily{lmtt}\selectfont www.kosomak.com}}
+
+وإذا أردت تنسيق السيرة الذاتية على هذا النحو بالنيابة عنك فيمكن التواصل معي عبر وسائل التواصل المختلفة 
+المذكورة أعلاه
+
+\mbox{} \hfill \begin{varwidth}{5cm} \raggedright  مع تحياتي \\ محمد عبد المطلب هاشم \end{varwidth}
+\end{tcolorbox}
+\end{document}

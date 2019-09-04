@@ -1,0 +1,42 @@
+\begin{center}%
+\begin{tikzpicture}[remember picture]
+\node [inner sep=0pt,text = white] (myname) {\parbox{\linewidth}{%
+\RTL\centering
+{\LARGE\farsiB محمد \blackout{هاشم}}\par\bigskip
+\tikz[]{\clip (0,0) circle ({0.3\linewidth}); \node [inner sep=0pt] at (0,-0.65cm) {\censorbox{\includegraphics[width=0.6\linewidth]{moo}}};}
+\begin{titlebox}[title={\color{white}المهمة}]\small\color{white}
+أنا كخريج جديد من قسم الهندسة الكهربية أبحث عن فرص عمل تلبي احتياجاتي عن طريق عرض خدماتي مقابل مرتب مرض
+\end{titlebox}%
+}
+};
+\coordinate (sex) at ([yshift=-1cm]myname.south);
+\path(sex) -- (myname);
+\begin{scope}[remember picture, overlay, on background layer]
+\fill [black] let \p1=(current page.north east), \p2=([xshift={-15pt-0.35\textwidth}]current page.north east),\p3=(myname.south),\p4=(sex) in (current page.north east) -- (\x1,\y3) -- 
+(\x1,\y4)%(sex) 
+-- (\x2,\y3) -- (\x2,\y2) -- cycle;
+\end{scope}
+\end{tikzpicture}
+%
+%\begin{tabular}{@{}rr@{}}
+%\end{tabular}
+\end{center}
+%---------
+\begin{titlebox}[title=معلومات شخصية]\renewcommand{\descriptionlabel}[1]{\color{blue} #1}%
+\begin{description}[nosep,leftmargin=1.2em]%
+\raggedleft\small%
+\item[الاسم بالكامل:]\mbox{}\\ محمد \blackout{عبد المطلب إبراهيم عبد المطلب هاشم}
+\item[محل الميلاد:]\mbox{}\\ \blackout{كوم النور، مركز ميت غمر، محافظة الدقهلة،} مصر
+\item[تاريخ الميلاد:]\mbox{}\\22 من أغسطس، 1994
+%\item[Nationality:]\mbox{}\\Egyptian
+%\item[Marital status:]\mbox{}\\single
+\item[للتواصل:]\mbox{}\\
+\begin{itemize}[nosep,align=right,labelwidth=1.2em,labelsep=0.4em,leftmargin=1.6em]
+	\item[\color{black}\faMobile*] \textenglish{+2 \blackout{01009968102}} \\ \textenglish{+2 \blackout{01063133400}}
+	\item[\faGoogle] \resizebox{0.99\linewidth}{!}{\textenglish{{\fontfamily{lmtt}\selectfont m.hashim.666666\-@gmail.com}}}
+	%\item[\color{blue}\faFacebook] {\ttfamily facebook.com/\blackout{themob911}} 
+	\item[\color{blue}\faLinkedin]  \blackout{"Nothing"}
+	\item[\color{green!50!black}\faWhatsapp] {+2 \blackout{01009968102}}
+\end{itemize}
+\end{description}
+\end{titlebox}

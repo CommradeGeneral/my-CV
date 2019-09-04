@@ -1,0 +1,101 @@
+\makeatletter
+\newtcolorbox{titlebox}[1][]{breakable,interior hidden,#1,left=2pt,right=2pt,enhanced, coltitle=black,
+attach boxed title to top right={yshift*=-\tcboxedtitleheight/2,xshift={-\kvtcb@width/10}},before skip=1.5em,after skip=1.5em,arc=2mm,
+%frame hidden,
+boxed title style={empty},varwidth boxed title=0.7\kvtcb@width,
+frame code={%
+			\draw [,line width=0.4mm] (title.west){[rounded corners=\kvtcb@arc] -| (frame.south west) -- (frame.south east)} |- (title.east) {[rounded corners=\kvtcb@arc] -- (title.south east) -- (title.south west)} -- cycle;
+					},}
+%skin first is subskin of ={myskini}{segmentation style={solid,line width=0.4mm}},
+%----------
+%skin last is subskin of ={myskiniii}{segmentation style={solid,line width=0.4mm}},
+%\newcommand{\logo}[1][\large\faGraduationCap]{}
+\newlength\sectionlabelwidth
+\setlength\sectionlabelwidth{0.05\linewidth}%
+
+
+
+\newcommand{\logo}{}
+\titleformat{\section}
+{\Large\jfflat\color{black}%
+%\needspace{4\baselineskip}
+}
+{}%
+{0ex minus 0ex}
+{\tikz[remember picture]{
+\node[rectangle,inner sep=0pt] (chapter) {\VarBox{\linewidth-\sectionlabelwidth-3pt}{\RTL #1}};
+\fill ([xshift=3pt]chapter.north east) -- ++({\sectionlabelwidth - 1ex-3pt},0) arc (180:270:1ex) |- ([xshift=+3pt]chapter.south east);
+\draw [overlay]($([xshift=3pt]chapter.north east)+({\sectionlabelwidth-3pt},0)$) coordinate (sym) circle (1ex);
+\path (chapter.north) --++(0,1ex);
+%\node [overlay] at (cir.center) {\large\faGraduationCap};
+\logo
+}%
+}
+\titlespacing*{\section}{0pt}{1ex}{2mm}
+\newif\ifmyorder
+\newcounter{myyorderu}
+
+\newcommand{\sublogo}{}
+\titleformat{\subsection}
+{\color{red!70!black}%
+%\Needspace{4\baselineskip}
+}
+{\sublogo}%%
+{1ex minus .1ex}
+{\jfflat #1}%
+
+\titlespacing*{\subsection}{0cm}{1ex plus 0.1ex minus 0.1ex}{1ex plus 0.3ex minus 0.3ex}
+
+\makeatother
+
+\makeatletter
+\renewcommand{\@makefnmark}{\textsuperscript{\tikz[baseline=(A.base)]{\node[inner sep=1pt,circle,fill,text=white] (A) {\bfseries\@thefnmark} ;}}}
+%\renewcommand\@makefntext[1]{%
+%{\hskip-4em%
+%\raisebox{0pt}[0ex][0pt]{%
+%\makebox[3.5em][l]{\parbox[t]{3.5em}{(\@thefnmark) $\displaystyle{\int}$}}}\hspace{0.5em}}%
+%\parindent=0em
+%\hangindent=4em
+%\hangafter=0
+%#1}
+\renewcommand\@makefntext[1]{%
+\begin{itemize}[nosep,align=left,labelwidth=1em,labelsep=0.5em,leftmargin=1.5em]
+\item[\protect{\tikz[baseline=(A.base)]{\node[inner sep=1pt,circle,fill,text=white] (A) {\bfseries\@thefnmark} ;}}] #1
+\end{itemize}%
+}
+
+\newtcolorbox{cusbox}[1][]{,
+after skip=0.5ex,
+enhanced,right=2em,righttitle=0em,left=0em,coltitle=black,,top=0pt,bottom=2pt,frame hidden,interior hidden,title style={color=yellow},fonttitle={\color{red!50!black}},sharp corners,#1
+}
+
+\renewenvironment{thebibliography}[1]
+     {%
+      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \setlength\parsep{0pt}
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+
+\makeatother
+
+\renewcommand{\footnoterule}{%
+  \kern-3pt
+  \nointerlineskip
+  \moveright.6\columnwidth\vbox{\hrule width.4\columnwidth}%
+  \nointerlineskip
+  \kern2.6pt
+}
